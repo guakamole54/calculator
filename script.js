@@ -15,6 +15,7 @@ function divide(a, b) {
 }
 
 function operate(operand1, operator, operand2) {
+
     operand1 = Number.parseFloat(operand1);
     operand2 = Number.parseFloat(operand2);
     switch (operator) {
@@ -62,7 +63,7 @@ evaluate.addEventListener('click', () => {
     displayState = null;
     if (operand1 && operand2) {
 
-        result = operand1 = operate(operand1, operator, operand2).toFixed(2);
+        result = operand1 = operate(operand1, operator, operand2);
         display.textContent = result;
         isDisplayedResult = true;
     }
@@ -75,7 +76,11 @@ nums.forEach((button) => {
             reset();
         }
 
-        if (!displayState) { displayState = num; display.textContent = displayState; }
+        if (!displayState) {
+            if (num != 0) {
+                { displayState = num; display.textContent = displayState; }
+            }
+        }
         else if (displayState.length < 10) {
             displayState += num;
             display.textContent += num;
