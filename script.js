@@ -15,7 +15,7 @@ function divide(a, b) {
 }
 
 function operate(operand1, operator, operand2) {
-
+    console.log(operand1, operator, operand2);
     operand1 = Number.parseFloat(operand1);
     operand2 = Number.parseFloat(operand2);
     switch (operator) {
@@ -54,26 +54,33 @@ let clear = document.querySelector("#clear");
 let evaluate = document.querySelector("#evaluate");
 let operations = document.querySelectorAll(".operation");
 
+// reset states
 clear.addEventListener('click', () => {
     reset();
 })
 
+
+// evaluate the result
 evaluate.addEventListener('click', () => {
     operand2 = displayState;
-    displayState = null;
+
     if (operand1 && operand2) {
 
         result = operand1 = operate(operand1, operator, operand2);
+
         display.textContent = result;
         isDisplayedResult = true;
+        displayState = null;
     }
 })
 
+// get input from the keyboard into displayState
 nums.forEach((button) => {
     button.addEventListener('click', () => {
         let num = button.textContent;
         if (isDisplayedResult) {
             reset();
+            isDisplayedResult = false;
         }
 
         if (!displayState) {
@@ -81,27 +88,47 @@ nums.forEach((button) => {
                 { displayState = num; display.textContent = displayState; }
             }
         }
-        else if (displayState.length < 10) {
+        else if (displayState.length < 15) {
             displayState += num;
             display.textContent += num;
         }
+
+        console.log(displayState);
     });
+
 })
 
+// get the operator sign from user
 operations.forEach((operation) => {
     operation.addEventListener('click', () => {
-        if (isDisplayedResult) isDisplayedResult = false;
+        if (isDisplayedResult) { isDisplayedResult = false; operator = null; }
 
+        // first number input
         if (!operand1 && displayState) {
             operand1 = displayState;
             displayState = null;
         }
 
-        if (operand1) {
+        // first operator input
+        if (operand1 && !operator) {
 
             let sign = operation.textContent;
             display.textContent = sign;
             operator = sign;
+            displayState = null;
+
+        }
+        // further operator inputs    
+        else {
+            operand2 = displayState;
+            if (operand1 && operand2) {
+                let sign = operation.textContent;
+                console.log(displayState);
+                operand1 = operate(operand1, operator, operand2);
+                operator = sign;
+                display.textContent = operand1;
+                displayState = null;
+            }
         }
     })
 })
