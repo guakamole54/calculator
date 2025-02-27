@@ -35,3 +35,22 @@ let operand1 = null;
 let operator = null;
 let operand2 = null;
 
+let buttons = document.querySelector(".buttons");
+let nums = buttons.querySelectorAll('.num');
+let display = document.querySelector("#display");
+let clear = document.querySelector("#clear");
+
+clear.addEventListener('click', () => display.textContent = '')
+
+nums.forEach((button) => {
+    button.addEventListener('click', () => {
+        let num = button.textContent;
+        if (!operand1) { operand1 = num; display.textContent = operand1; }
+        else if (operand1.length < 10) {
+            operand1 += num;
+            display.textContent += num;
+            console.log(operand1);
+        }
+    });
+})
+
