@@ -9,22 +9,22 @@ body {
 
 .main-calculator {
     display: flex;
-    flex-wrap: wrap;
-    width: 250px;
+    flex-direction: column;
+    width: 450px;
     background-color: #455d7a;
-    padding: 35px 45px;
+    padding: 10px;
     margin-top: 100px;
     border: 1px solid black;
     border-radius: 15px;
 }
 
 button {
-    width: 60px;
-    height: 60px;
-    margin: 7px;
-    font-weight: bold;
+    width: 70px;
+    height: 70px;
     border-radius: 10px;
     background-color: gainsboro;
+    margin: 3.5px;
+    font-size: 30px;
 }
 
 button:hover {
@@ -36,11 +36,11 @@ button:hover {
     height: 50px;
     font-size: 35px;
     border: 1px solid black;
-    margin: 5px;
-    width: 230px;
     padding: 15px;
     background-color: aliceblue;
     border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
 #clear {
@@ -50,10 +50,6 @@ button:hover {
 
 .buttons {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 8px;
 
 }
 
@@ -76,4 +72,7 @@ button:hover {
     color: white;
     width: 100%;
     margin-top: auto;
+}
+.operations {
+    text-align: right;
 }
