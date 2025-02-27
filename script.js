@@ -39,6 +39,7 @@ let buttons = document.querySelector(".buttons");
 let nums = buttons.querySelectorAll('.num');
 let display = document.querySelector("#display");
 let clear = document.querySelector("#clear");
+let operations = document.querySelectorAll(".operation");
 
 clear.addEventListener('click', () => display.textContent = '')
 
@@ -52,5 +53,14 @@ nums.forEach((button) => {
             console.log(operand1);
         }
     });
+})
+
+operations.forEach((operation) => {
+    operation.addEventListener('click', () => {
+        let sign = operation.textContent;
+        display.textContent = sign;
+        console.log(sign);
+
+    })
 })
 
